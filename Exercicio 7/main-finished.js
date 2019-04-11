@@ -13,7 +13,7 @@ function random(min, max) {
   return num;
 }
 
-// define Ball constructor
+// define Shape constructor
 
 function Shape(x, y, velX, velY, exists) {
   this.x = x;
@@ -23,19 +23,32 @@ function Shape(x, y, velX, velY, exists) {
   this.exists = exists;
 }
 
-// define Balle constructor
+function EvilCircle(x, y, velX, velY, color, size, exists) {
+  Shape.call(this, x, y, 20, 20, exists);
+  this.color = 'white';
+  this.size = 10;
+}
+EvilCircle.prototype = Object.create(Shape.prototype);
+Object.defineProperty(EvilCircle.prototype, 'constructor', {
+  value: EvilCircle,
+  enumerable: false,
+  writable: true
+});
+
+// define Ball constructor
 
 function Ball(x, y, velX, velY, color, size, exists) {
   Shape.call(this, x, y, velX, velY, exists);
   this.color = color;
   this.size = size;
 }
+
 Ball.prototype = Object.create(Shape.prototype);
 Object.defineProperty(Ball.prototype, 'constructor', {
   value: Ball,
   enumerable: false,
   writable: true
-})
+});
 
 // define ball draw method
 
