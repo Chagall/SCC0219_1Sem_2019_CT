@@ -23,17 +23,79 @@ function Shape(x, y, velX, velY, exists) {
   this.exists = exists;
 }
 
+// define EvilCircle constructor
+
 function EvilCircle(x, y, velX, velY, color, size, exists) {
   Shape.call(this, x, y, 20, 20, exists);
   this.color = 'white';
   this.size = 10;
 }
+
 EvilCircle.prototype = Object.create(Shape.prototype);
 Object.defineProperty(EvilCircle.prototype, 'constructor', {
   value: EvilCircle,
   enumerable: false,
   writable: true
 });
+
+// define EvilCircle draw method
+EvilCircle.prototype.draw = function () {
+  ctx.beginPath();
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = this.color;
+  ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+  ctx.stroke();
+}
+
+// define EvilCircle check bounds method
+EvilCircle.prototype.checkBounds = function () {
+  if ((this.x + this.size) >= width) {
+    this.x = this.x - this.size;
+  }
+
+  if ((this.x - this.size) <= 0) {
+    this.x = this.x + this.size;
+  }
+
+  if ((this.y + this.size) >= height) {
+    this.y = this.y - this.size;
+  }
+
+  if ((this.y - this.size) <= 0) {
+    this.y = this.y + this.size;
+  }
+}
+
+// define EvilCircle set controls method
+EvilCircle.prototype.setControls = function () {
+  var _this = this;
+  window.onkeydown = function (e) {
+    if (e.keyCode === 65) {
+      _this.x -= _this.velX;
+    } else if (e.keyCode === 68) {
+      _this.x += _this.velX;
+    } else if (e.keyCode === 87) {
+      _this.y -= _this.velY;
+    } else if (e.keyCode === 83) {
+      _this.y += _this.velY;
+    }
+  }
+}
+
+// define EvilCricle collision detect method
+EvilCircle.prototype.collisionDetect = function () {
+  for (var j = 0; j < balls.length; j++) {
+    if (balls[j].exists === true) {
+      var dx = this.x - balls[j].x;
+      var dy = this.y - balls[j].y;
+      var distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < this.size + balls[j].size) {
+        balls[j].exists = false;
+      }
+    }
+  }
+}
 
 // define Ball constructor
 
