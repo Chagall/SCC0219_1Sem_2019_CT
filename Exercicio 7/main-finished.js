@@ -1,5 +1,7 @@
 // setup canvas
 
+var score = document.querySelector('p');
+var ballsCount = -1;
 var canvas = document.querySelector('canvas');
 var ctx = canvas.getContext('2d');
 
@@ -189,15 +191,20 @@ function loop() {
       true
     );
     balls.push(ball);
+    score.textContent = "Ball count: " + balls.length;
   }
 
+  ballsCount = 0;
   for (var i = 0; i < balls.length; i++) {
     if (balls[i].exists) {
+      ballsCount++;
       balls[i].draw();
       balls[i].update();
       balls[i].collisionDetect();
     }
   }
+
+  score.textContent = "Ball count: " + ballsCount;
 
   evilCircle.draw();
   evilCircle.checkBounds();
