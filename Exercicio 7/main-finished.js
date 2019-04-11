@@ -41,8 +41,8 @@ Object.defineProperty(EvilCircle.prototype, 'constructor', {
 // define EvilCircle draw method
 EvilCircle.prototype.draw = function () {
   ctx.beginPath();
-  ctx.lineWidth = 3;
   ctx.strokeStyle = this.color;
+  ctx.lineWidth = 3;
   ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
   ctx.stroke();
 }
@@ -164,11 +164,16 @@ Ball.prototype.collisionDetect = function () {
 
 var balls = [];
 
+// Instantiate the evil circle
+var evilCircle = new EvilCircle(random(0,width), random(0,height), true);
+evilCircle.setControls();
+
 // define loop that keeps drawing the scene constantly
 
 function loop() {
   ctx.fillStyle = 'rgba(0,0,0,0.25)';
   ctx.fillRect(0, 0, width, height);
+
 
   while (balls.length < 25) {
     var size = random(10, 20);
@@ -187,10 +192,16 @@ function loop() {
   }
 
   for (var i = 0; i < balls.length; i++) {
-    balls[i].draw();
-    balls[i].update();
-    balls[i].collisionDetect();
+    if (balls[i].exists) {
+      balls[i].draw();
+      balls[i].update();
+      balls[i].collisionDetect();
+    }
   }
+
+  evilCircle.draw();
+  evilCircle.checkBounds();
+  evilCircle.collisionDetect();
 
   requestAnimationFrame(loop);
 }
