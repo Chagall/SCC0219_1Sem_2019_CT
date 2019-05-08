@@ -1,42 +1,91 @@
 const btn = document.querySelector('button');
 
 let playerOneInput = "";
+let playerOneScore = 0;
 let playerTwoInput = "";
+let playerTwoScore = 0;
+
+const jokenpoOptions = Object.freeze({ "PEDRA": "d", "PAPEL": "p", "TESOURA": "t" });
 const InputEnum = Object.freeze({ "P1_CHOOSES": 1, "P2_CHOOSES": 2 });
 const ResultEnum = Object.freeze({ "P1_WIN": 1, "P2_WIN": 2, "DRAW": 0, "INPUT_ERROR": -1 });
-let playerCounter = 1;
 
-btn.addEventListener('click', receivePlayerInput());
+let whoPlays = 1;
+let result = -1;
+
+
+btn.addEventListener('click', function () { startGame() });
+
+function resetGame() {
+  playerOneInput = "";
+  playerTwoInput = "";
+  playerOneScore = 0;
+  playerTwoScore = 0;
+  whoPlays = 1;
+  result = -1;
+  document.getElementById("player_1_score").textContent = "Score: 0";
+  document.getElementById("player_2_score").textContent = "Score: 0";
+  document.getElementById("whoIsChoosing").style = "visibility: visible;";
+  document.getElementById("whoIsChoosing").textContent = "Vez do jogador 1";
+}
+
+function startGame() {
+  resetGame();
+  receivePlayerInput();
+}
+
+function keydownHandler(event) {
+  console.log(event.key);
+
+  // Se for a vez do jogador 1, receba o input dele
+  if (whoPlays === InputEnum.P1_CHOOSES) {
+    if (event.key !== jokenpoOptions.PEDRA && event.key !== jokenpoOptions.PAPEL && event.key !== jokenpoOptions.TESOURA) {
+      alert("Escolha uma opção válida para o jogador 1!");
+    }
+    else {
+      playerOneInput = event.key;
+      whoPlays++;
+      // Mostra que e a vez do jogador 1
+      document.getElementById("whoIsChoosing").textContent = "Vez do jogador 2";
+    }
+  }
+  // Se for a vez do jogador 2, receba o input dele
+  else if (whoPlays === InputEnum.P2_CHOOSES) {
+    if (event.key !== jokenpoOptions.PEDRA && event.key !== jokenpoOptions.PAPEL && event.key !== jokenpoOptions.TESOURA) {
+      alert("Escolha uma opção válida para o jogador 2");
+    }
+    else {
+      playerTwoInput = event.key;
+      whoPlays--;
+      document.getElementById("whoIsChoosing").textContent = "Vez do jogador 1";
+      showInputs();
+      computeResult();
+      announceResult();
+    }
+  }
+}
 
 function receivePlayerInput() {
-
+  btn.textContent = "Playing";
   document.addEventListener('keydown', keydownHandler);
+}
 
-  function keydownHandler(event) {
+function computeResult() {
+  result = compareInputs(playerOneInput, playerTwoInput);
 
-    console.log(event.key);
-
-    if (playerCounter === InputEnum.P1_CHOOSES) {
-      if (event.key !== "d" && event.key !== "p" && event.key !== "t") {
-        alert("Escolha uma opção válida para o jogador 1");
-      } else {
-        playerOneInput = event.key;
-        playerCounter++;
-      }
-    }
-    else if (playerCounter === InputEnum.P2_CHOOSES) {
-      if (event.key !== "d" && event.key !== "p" && event.key !== "t") {
-        alert("Escolha uma opção válida para o jogador 2");
-      } else {
-        playerTwoInput = event.key;
-        playerCounter--;
-        showInputs();
-        const result = compareInputs(playerOneInput, playerTwoInput);
-        announceResult(result);
-        btn.textContent = "Reset";
-      }
-    }
-  };
+  if (result === ResultEnum.P1_WIN) {
+    playerOneScore++;
+    document.getElementById("player_1_score").textContent = "Score: " + playerOneScore;
+  }
+  else if (result === ResultEnum.P2_WIN) {
+    playerTwoScore++;
+    document.getElementById("player_2_score").textContent = "Score: " + playerTwoScore;
+  }
+  else if (result === ResultEnum.DRAW) {
+    alert("Ocorreu um empate!");
+  }
+  else {
+    alert("Um dos jogadores selecionou uma opção inválida");
+  }
 }
 
 /*
@@ -98,21 +147,24 @@ function compareInputs(playerOneInput, playerTwoInput) {
   }
 }
 
-function announceResult(result) {
-  if (result === ResultEnum.P1_WIN) {
+function announceResult() {
+  if (playerOneScore >= 3) {
+    btn.textContent = "Reset";
+    document.getElementById("whoIsChoosing").style = "visibility: hidden;";
     alert("O jogador 1 venceu!");
+    document.removeEventListener('keydown', keydownHandler);
   }
-  else if (result === ResultEnum.P2_WIN) {
+  else if (playerTwoScore >= 3) {
+    btn.textContent = "Reset";
+    document.getElementById("whoIsChoosing").style = "visibility: hidden;";
     alert("O jogador 2 venceu!");
-  }
-  else if (result === ResultEnum.DRAW) {
-    alert("Ocorreu um empate!");
-  }
-  else {
-    alert("Um dos jogadores selecionou uma opção inválida");
+    document.removeEventListener('keydown', keydownHandler);
   }
 }
 
+/*
+  Mostra na pagina qual a opcao selecionada por cada jogador
+*/
 function showInputs() {
   if (playerOneInput === "d") {
     document.getElementById("player_1").textContent = "Player 1: PEDRA"
@@ -133,9 +185,4 @@ function showInputs() {
   else if (playerTwoInput === "t") {
     document.getElementById("player_2").textContent = "Player 2: TESOURA"
   }
-}
-
-// Volta o placar para 0
-function reset() {
-
 }

@@ -3,21 +3,30 @@
 
 <head>
   <meta charset="utf-8">
-  <title>2-player reaction game</title>
+  <title>Neo Jokenpô</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <section class="ui">
-    <h1>PEDRA PAPEL TESOURA</h1>
+    
+    <h1 class="title">Neo Jokenpô</h1>
+
     <div class="topbar">
-      <p class="p1" id="player_1">Player 1:</p>
-      <p class="p2" id="player_2">Player 2:</p>
+      <p class="p1" id="player_1">Player 1</p>
+      <p class="p2" id="player_2">Player 2</p>
       <div class="middlebar">
         <button>Start game</button>
       </div>
     </div>
-    <h1 id="who_is_choosing"></h1>
+
+    <div class="topbar">
+      <p class="p1" id="player_1_score">Score: 0</p>
+      <p class="p2" id="player_2_score">Score: 0</p>
+    </div>
+
+    <h1 id="whoIsChoosing">Vez do jogador 1</h1>
+
   </section>
 
   <script src="script.js"></script>
