@@ -34,8 +34,6 @@ function startGame() {
 }
 
 function keydownHandler(event) {
-  console.log(event.key);
-
   // Se for a vez do jogador 1, receba o input dele
   if (whoPlays === InputEnum.P1_CHOOSES) {
     if (event.key !== jokenpoOptions.PEDRA && event.key !== jokenpoOptions.PAPEL && event.key !== jokenpoOptions.TESOURA) {
