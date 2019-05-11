@@ -84,3 +84,11 @@ button:active {
   color: #7b61f8;
   visibility: hidden;
 }
+
+#player_1_image {
+  visibility: hidden;
+}
+
+#player_2_image {
+  visibility: hidden;
+}

@@ -9,9 +9,17 @@
 
 <body>
   <section class="ui">
-    
+
     <h1 class="title">Neo Jokenpô</h1>
 
+    <p>Para iniciar o jogo aperte START</p>
+    <p>O jogador 1 começa escolhendo depois é a vez do jogador 2</p>
+    <p>Aperte a tecla `d` para escolher PEDRA</p>
+    <p>Aperte a tecla `p` para PAPEL</p>
+    <p>Aperte a tecla `t` para TESOURA</p>
+    <P>O PRIMEIRO JOGADOR A ACUMULAR 3 PONTOS VENCE!</P>
+    <P>Após alguém vencer aperte reset para reiniciar o jogo</P>
+    
     <div class="topbar">
       <p class="p1" id="player_1">Player 1</p>
       <p class="p2" id="player_2">Player 2</p>
@@ -27,6 +35,10 @@
 
     <h1 id="whoIsChoosing">Vez do jogador 1</h1>
 
+    <div class="topbar">
+      <img id="player_1_image" src="images/paper.png">
+      <img id="player_2_image" src="images/scissor.png">
+    </div>
   </section>
 
   <script src="script.js"></script>
