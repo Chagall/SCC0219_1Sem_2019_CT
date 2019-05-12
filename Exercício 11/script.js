@@ -5,12 +5,21 @@ let playerOneScore = 0;
 let playerTwoInput = "";
 let playerTwoScore = 0;
 
+const PAPER_IMG_URL = "https://www.iconfinder.com/icons/379340/download/png/128";
+const SCISSOR_IMG_URL = "https://www.iconfinder.com/icons/725539/download/png/128";
+const STONE_IMG_URL = "https://www.iconfinder.com/icons/4570802/download/png/128";
+
 const jokenpoOptions = Object.freeze({ "PEDRA": "d", "PAPEL": "p", "TESOURA": "t" });
 const InputEnum = Object.freeze({ "P1_CHOOSES": 1, "P2_CHOOSES": 2 });
 const ResultEnum = Object.freeze({ "P1_WIN": 1, "P2_WIN": 2, "DRAW": 0, "INPUT_ERROR": -1 });
 
 let whoPlays = 1;
 let result = -1;
+
+function downloadImages() {
+  fetch(PAPER_IMG_URL)
+  .then(response => console.log(response))
+}
 
 btn.addEventListener('click', function () { startGame() });
 
@@ -30,6 +39,7 @@ function resetGame() {
 }
 
 function startGame() {
+  downloadImages();
   resetGame();
   receivePlayerInput();
 }

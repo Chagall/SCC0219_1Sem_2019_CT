@@ -1,0 +1,94 @@
+body {
+  font-family: "Lucida Console", Monaco, monospace;
+  background-color: #fa86ab;
+  text-align: center;
+  height: inherit;
+  margin: 0;
+}
+
+.title {
+  color: #f5d300;
+  font-size: 2em;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* UI Layout */
+
+section {
+  width: 100%;
+  height: inherit;
+  padding: 30px;
+}
+
+.topbar {
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.topbar p, button {
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+  border: 5px solid;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.p1, .p2 {
+  align-self: flex-start;
+}
+
+.topbar .p1 {
+  order: 0;
+  border-color: yellow;
+  color: yellow;
+}
+
+.topbar .p2 {
+  order: 2;
+  border-color: cyan;
+  color: cyan;
+}
+
+.topbar .middlebar {
+  order: 1;
+}
+
+.middlebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  color: #4e87a4;
+  border: 0;
+  padding: 12.75px 20px;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+button:hover, button:focus {
+  background-color: #eee;
+}
+
+button:active {
+  background-color: #fff;
+}
+
+#whoIsChoosing {
+  color: #7b61f8;
+  visibility: hidden;
+}
+
+#player_1_image {
+  visibility: hidden;
+}
+
+#player_2_image {
+  visibility: hidden;
+}
