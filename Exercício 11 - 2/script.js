@@ -12,6 +12,43 @@ const ResultEnum = Object.freeze({ "P1_WIN": 1, "P2_WIN": 2, "DRAW": 0, "INPUT_E
 let whoPlays = 1;
 let result = -1;
 
+const PAPER_IMG_URL = "https://raw.githubusercontent.com/Chagall/SCC0219_1Sem_2019_CT/master/Exercicio%2011%20-%20Images/paper.png"
+const SCISSOR_IMG_URL = "https://raw.githubusercontent.com/Chagall/SCC0219_1Sem_2019_CT/master/Exercicio%2011%20-%20Images/scissor.png"
+const STONE_IMG_URL = "https://raw.githubusercontent.com/Chagall/SCC0219_1Sem_2019_CT/master/Exercicio%2011%20-%20Images/stone.png"
+
+var paperImgURL = "";
+var scissorImgURL = "";
+var stoneImgURL = "";
+
+function downloadImages() {
+  fetch(PAPER_IMG_URL, { mode: "cors"})
+  .then(response => response.blob())
+  .then(myBlob => {
+    paperImgURL = URL.createObjectURL(myBlob);
+  })
+  .catch(e => {
+    console.log('There has been a problem with your fetch operation: ' + e.message);
+  });
+
+  fetch(SCISSOR_IMG_URL, { mode: "cors"})
+  .then(response => response.blob())
+  .then(myBlob => {
+    scissorImgURL = URL.createObjectURL(myBlob);
+  })
+  .catch(e => {
+    console.log('There has been a problem with your fetch operation: ' + e.message);
+  });
+
+  fetch(STONE_IMG_URL, { mode: "cors"})
+  .then(response => response.blob())
+  .then(myBlob => {
+    stoneImgURL = URL.createObjectURL(myBlob);
+  })
+  .catch(e => {
+    console.log('There has been a problem with your fetch operation: ' + e.message);
+  });
+}
+
 btn.addEventListener('click', function () { startGame() });
 
 function resetGame() {
@@ -30,6 +67,7 @@ function resetGame() {
 }
 
 function startGame() {
+  downloadImages();
   resetGame();
   receivePlayerInput();
 }
@@ -168,34 +206,34 @@ function showInputs() {
   if (playerOneInput === "d") {
     document.getElementById("player_1").textContent = "Player 1: PEDRA"
     document.getElementById("player_1_image").style = "visibility: visible;";
-    document.getElementById("player_1_image").src = "images/stone.png";
+    document.getElementById("player_1_image").src = stoneImgURL;
   }
   else if (playerOneInput === "p") {
     document.getElementById("player_1").textContent = "Player 1: PAPEL"
     document.getElementById("player_1_image").style = "visibility: visible;";
-    document.getElementById("player_1_image").src = "images/paper.png";
+    document.getElementById("player_1_image").src = paperImgURL;
 
   }
   else if (playerOneInput === "t") {
     document.getElementById("player_1").textContent = "Player 1: TESOURA"
     document.getElementById("player_1_image").style = "visibility: visible;";
-    document.getElementById("player_1_image").src = "images/scissor.png";
+    document.getElementById("player_1_image").src = scissorImgURL;
 
   }
 
   if (playerTwoInput === "d") {
     document.getElementById("player_2").textContent = "Player 2: PEDRA"
     document.getElementById("player_2_image").style = "visibility: visible;";
-    document.getElementById("player_2_image").src = "images/stone.png";
+    document.getElementById("player_2_image").src = stoneImgURL;
   }
   else if (playerTwoInput === "p") {
     document.getElementById("player_2").textContent = "Player 2: PAPEL"
     document.getElementById("player_2_image").style = "visibility: visible;";
-    document.getElementById("player_2_image").src = "images/paper.png"
+    document.getElementById("player_2_image").src = paperImgURL;
   }
   else if (playerTwoInput === "t") {
     document.getElementById("player_2").textContent = "Player 2: TESOURA"
     document.getElementById("player_2_image").style = "visibility: visible;";
-    document.getElementById("player_2_image").src = "images/scissor.png"
+    document.getElementById("player_2_image").src = scissorImgURL;
   }
 }

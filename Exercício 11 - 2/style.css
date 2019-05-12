@@ -92,3 +92,12 @@ button:active {
 #player_2_image {
   visibility: hidden;
 }
+
+.info {
+  font-size: 1.2em;
+  width: 50%;
+}
+
+#info_div {
+  display: flex;
+}
