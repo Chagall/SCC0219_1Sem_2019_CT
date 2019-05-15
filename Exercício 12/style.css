@@ -5,6 +5,12 @@
   text-align: center;
 }
 
+.list-content {
+  margin-top: 2vw;
+  margin-left: 2vw;
+  margin-right: 2vw;
+}
+
 .main-title-text {
   margin: 1em;
   color: #03A9F4;
@@ -24,7 +30,11 @@
   margin: 1em;
 }
 
-.form-group {
+.credentials-form-group {
   margin: 0 auto;
   width: 33%;
+}
+
+.create-post-jumbo {
+  text-align: center;
 }
