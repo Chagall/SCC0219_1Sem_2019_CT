@@ -20,9 +20,9 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="bg-light">
   <!-- Navigation bar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <!-- Home -->
     <a class="navbar-brand" href="index.html">
       <img src="images/bluddit-bg.svg" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -73,27 +73,72 @@
   </nav>
 
   <!-- Main page content -->
-  <main class="main-content">
-    <img src="images/bluddit-bg.svg" width="128" height="128" class="d-inline-block align-top" alt="">
-    <form class="bluddit-form">
-      <h3>LOG <span class="brand-name">I</span>N</h3>
-      <!-- E-mail -->
-      <div class="form-group credentials-form-group">
-        <input id="signinEmail" type="email" class="form-control" placeholder="E-mail">
+  <main class="list-content">
+    <div class="row">
+      <!-- Posts -->
+      <div class="col-8">
+        <ul class="list-group">
+          <li class="list-group-item disabled">
+            <p>
+              <small cass="text-muted">Postado por <a href="#">/u/linus-tovald-macbooker</a> 5 horas atrás</small>
+              <span class="badge badge-primary badge-pill">256 respostas</span>
+              <span class="badge badge-danger badge-pill">Fechado por excesso de trolls</span>
+            </p>
+            <img src="images/mac-os-2.jpg" width="33%" height="33%">
+            <p>10 razões por que o Mac OS é melhor que o Linux</p>
+          </li>
+          <li class="list-group-item">
+            <p>
+              <small cass="text-muted">Postado por <a href="#">/u/real-linus-tovalds</a> 3 horas atrás</small>
+              <span class="badge badge-primary badge-pill">1024 respostas</span>
+            </p>
+            <img src="images/fake.jpeg" width="33%" height="33%">
+            <p><a href="#">Linus torvalds macbooker é uma conta <mark>FAKE</mark> (SAIBA QUEM É ELE DE VERDADE!)</a></p>
+          </li>
+          <li class="list-group-item">
+            <p>
+              <small cass="text-muted">Postado por <a href="#">/u/noob-programmer</a> 72 horas atrás</small>
+              <span class="badge badge-primary badge-pill">0 respostas</span>
+              <a href="#" class="badge badge-danger" onclick="alert('Post deletado com sucesso!')">Deletar post</a>
+            </p>
+            <img src="images/languages.jpeg" width="33%" height="33%">
+            <p><a href="#">Qual a melhor linguagem de programação para quem está querendo começar mas não sabe nada</a>
+            </p>
+          </li>
+        </ul>
       </div>
-      <!-- Senha -->
-      <div class="form-group credentials-form-group">
-        <input id="signinPassword" type="password" class="form-control" placeholder="Senha">
+      <!-- Criar um post -->
+      <div class="col-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <p>
+              <small cass="text-muted">Logado como: <a href="#">/u/noob-programmer</a></small>
+            </p>
+            <h3 class="card-title">Cr<span class="brand-name">i</span>ar post</h3>
+            <div class="form-group">
+              <input id="post-title" type="email" class="form-control" placeholder="Título">
+            </div>
+            <div class="form-group">
+              <textarea Id="postText" class="form-control" placeholder="Texto" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile04"
+                  aria-describedby="inputGroupFileAddon04">
+                <label class="custom-file-label" for="inputGroupFile04">Adicionar imagem</label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">POSTAR</button>
+          </div>
+        </div>
       </div>
-      <!-- Manter conexão -->
-      <div class="form-group credentials-form-group form-check">
-        <input type="checkbox" class="form-check-input" id="remember-me-checkbox">
-        <label class="form-check-label" for="remember-me-checkbox">Mantenha-me conectado</label>
-      </div>
-      <!-- Botão de cadastro -->
-      <button type="submit" class="btn btn-primary">Entrar</button>
-    </form>
+    </div>
+
+
+
   </main>
+
+  <script src="" async defer></script>
 </body>
 
 </html>

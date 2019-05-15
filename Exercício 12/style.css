@@ -1,14 +1,15 @@
 .main-content {
-  margin-top: 2vw;
+  margin-top: 2vh;
   margin-left: 12vw;
   margin-right: 12vw;
   text-align: center;
 }
 
 .list-content {
-  margin-top: 2vw;
+  margin-top: 2vh;
   margin-left: 2vw;
   margin-right: 2vw;
+  margin-bottom: 4vh;
 }
 
 .main-title-text {
